@@ -10,7 +10,7 @@ from telegram.ext import MessageHandler
 TOKEN = getenv("TELEGRAM_YOUTUBE_AUDIO_BOT_TOKEN")
 
 logging.basicConfig(format='[ %(asctime)s ] %(message)s', level=logging.INFO)
-
+logger = logging.getLogger(__name__)
 
 # COMMAND HANDLERS
 def start(bot, update):
@@ -39,6 +39,7 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text, echo))
 
     updater.start_polling()
+    updater.idle()
 
 
 if __name__ == '__main__':
