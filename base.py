@@ -5,8 +5,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import Updater
 from telegram.ext import Filters
 from telegram.ext import MessageHandler, Filters
-from telegram.ext import InlineQueryHandler
-from telegram import InlineQueryResult
+# from telegram.ext import InlineQueryHandler, InlineQueryResult
 
 
 TG_TOKEN = getenv("TELEGRAM_YOUTUBE_AUDIO_BOT_TOKEN")
@@ -34,12 +33,12 @@ def echo(bot, update):
                      text=update.message.text)
 
 
-def inline_processing(bot, update):
-    query = update.inline_query.query
-    if not query:
-        return
-    result = update.message.text # for now
-    bot.answer_inline_query(update.inline_query.id, result)
+# def inline_processing(bot, update):
+#     query = update.inline_query.query
+#     if not query:
+#         return
+#     result = update.message.text # for now
+#     bot.answer_inline_query(update.inline_query.id, result)
 
 
 def unknown(bot, update):
@@ -64,8 +63,8 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text, echo))
     dispatcher.add_handler(MessageHandler(Filters.commands, unknown))
 
-    # Initialize Inline handlers
-    dispatcher.add_handler(InlineQueryHandler(inline_processing))
+    # # Initialize Inline handlers
+    # dispatcher.add_handler(InlineQueryHandler(inline_processing))
 
     # Start the Bot
     updater.start_polling()
